@@ -1,0 +1,14 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <publishUrl>http://dinocore.sc</publishUrl>
+        <ExcludeFilesFromDeployment>packages.config</ExcludeFilesFromDeployment>
+        <WebPublishMethod>FileSystem</WebPublishMethod>
+        <LastUsedBuildConfiguration>Debug</LastUsedBuildConfiguration>
+        <LastUsedPlatform>Any CPU</LastUsedPlatform>
+        <SiteUrlToLaunchAfterPublish />
+        <LaunchSiteAfterPublish>True</LaunchSiteAfterPublish>
+        <ExcludeApp_Data>False</ExcludeApp_Data>
+        <DeleteExistingFiles>False</DeleteExistingFiles>
+    </PropertyGroup>
+    <Import Project="./publishsettings.targets.user" Condition="exists('./publishsettings.targets.user')" />
+</Project>
