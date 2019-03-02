@@ -1,5 +1,5 @@
 import React from 'react';
-import GraphQLApi from '../api/graphql-api';
+import { isServer } from '@sitecore-jss/sitecore-jss';
 
 const STATUS = {
     STOP: 'STOP',
@@ -15,100 +15,106 @@ export default class Game extends React.Component {
     constructor(props) {
         super(props);
 
-        let imageLoadCount = 0;
-        let onImageLoaded = () => {
-            ++imageLoadCount;
-            if (imageLoadCount === 3) {
-                this.__draw();
-            }
-        };
+        if (!isServer()) {
+            let imageLoadCount = 0;
+            let onImageLoaded = () => {
+                ++imageLoadCount;
+                if (imageLoadCount === 3) {
+                    this.__draw();
+                }
+            };
 
-        let audio = new Audio('/wav/death.wav')
-        let wall = new Image();
-        let skyImage = new Image();
-        let groundImage = new Image();
-        let playerImage = new Image();
-        let playerLeftImage = new Image();
-        let playerRightImage = new Image();
-        let playerDieImage = new Image();
-        let obstacleImage = new Image();
+            let audio = new Audio('/wav/death.wav')
+            let wall = new Image();
+            let skyImage = new Image();
+            let groundImage = new Image();
+            let playerImage = new Image();
+            let playerLeftImage = new Image();
+            let playerRightImage = new Image();
+            let playerDieImage = new Image();
+            let obstacleImage = new Image();
 
-        wall.onload = onImageLoaded;
-        skyImage.onload = onImageLoaded;
-        groundImage.onload = onImageLoaded;
-        playerImage.onload = onImageLoaded;
+            wall.onload = onImageLoaded;
+            skyImage.onload = onImageLoaded;
+            groundImage.onload = onImageLoaded;
+            playerImage.onload = onImageLoaded;
 
-        wall.src = '/img/wall.png';
-        skyImage.src = '/img/cloud.png';
-        groundImage.src = '/img/ground.png';
-        playerImage.src = '/img/dinosaur.png';
-        playerLeftImage.src = '/img/dinosaur_left.png';
-        playerRightImage.src = '/img/dinosaur_right.png';
-        playerDieImage.src = '/img/dinosaur_die.png';
-        obstacleImage.src = '/img/obstacle.png';
+            wall.src = '/img/wall.png';
+            skyImage.src = '/img/cloud.png';
+            groundImage.src = '/img/ground.png';
+            playerImage.src = '/img/dinosaur.png';
+            playerLeftImage.src = '/img/dinosaur_left.png';
+            playerRightImage.src = '/img/dinosaur_right.png';
+            playerDieImage.src = '/img/dinosaur_die.png';
+            obstacleImage.src = '/img/obstacle.png';
 
-        this.options = {
-            fps: 60,
-            skySpeed: 40,
-            groundSpeed: 100,
-            wall: wall,
-            audio: audio,
-            skyImage: skyImage,
-            groundImage: groundImage,
-            playerImage: [playerImage, playerLeftImage, playerRightImage, playerDieImage],
-            obstacleImage: obstacleImage,
-            skyOffset: 0,
-            groundOffset: 0,
-            ...this.props.options
-        };
+            this.options = {
+                fps: 60,
+                skySpeed: 40,
+                groundSpeed: 100,
+                wall: wall,
+                audio: audio,
+                skyImage: skyImage,
+                groundImage: groundImage,
+                playerImage: [playerImage, playerLeftImage, playerRightImage, playerDieImage],
+                obstacleImage: obstacleImage,
+                skyOffset: 0,
+                groundOffset: 0,
+                ...this.props.options
+            };
 
-        this.status = STATUS.STOP;
-        this.timer = null;
-        this.score = 0;
-        this.highScore = window.localStorage ? window.localStorage['highScore'] || 0 : 0;
-        this.jumpHeight = 0;
-        this.jumpDelta = 0;
-        this.obstaclesBase = 1;
-        this.obstacles = this.__obstaclesGenerate();
-        this.currentDistance = 0;
-        this.playerStatus = 0;
+            this.status = STATUS.STOP;
+            this.timer = null;
+            this.score = 0;
+            this.highScore = window.localStorage ? window.localStorage['highScore'] || 0 : 0;
+            this.jumpHeight = 0;
+            this.jumpDelta = 0;
+            this.obstaclesBase = 1;
+            this.obstacles = this.__obstaclesGenerate();
+            this.currentDistance = 0;
+            this.playerStatus = 0;
+        }
     }
 
     componentDidMount() {
-        if (window.innerWidth >= 680) {
-            this.canvas.width = 680;
+        if (!isServer()) {
+            if (window.innerWidth >= 680) {
+                this.canvas.width = 680;
+            }
+
+            const onSpacePress = () => {
+                switch (this.status) {
+                    case STATUS.STOP:
+                        this.start();
+                        break;
+                    case STATUS.START:
+                        this.jump();
+                        break;
+                    case STATUS.OVER:
+                        this.restart();
+                        break;
+                    default:
+                        break;
+                }
+            };
+
+            window.onkeypress = function (e) {
+                if (e.key === ' ') {
+                    onSpacePress();
+                }
+            };
+            this.canvas.parentNode.onclick = onSpacePress;
+
+            window.onblur = this.pause;
+            window.onfocus = this.goOn;
         }
-
-        const onSpacePress = () => {
-            switch (this.status) {
-                case STATUS.STOP:
-                    this.start();
-                    break;
-                case STATUS.START:
-                    this.jump();
-                    break;
-                case STATUS.OVER:
-                    this.restart();
-                    break;
-                default:
-                    break;
-            }
-        };
-
-        window.onkeypress = function (e) {
-            if (e.key === ' ') {
-                onSpacePress();
-            }
-        };
-        this.canvas.parentNode.onclick = onSpacePress;
-
-        window.onblur = this.pause;
-        window.onfocus = this.goOn;
     }
 
     componentWillUnmount() {
-        window.onblur = null;
-        window.onfocus = null;
+        if (!isServer()) {
+            window.onblur = null;
+            window.onfocus = null;
+        }
     }
 
     __draw() {
@@ -307,8 +313,12 @@ export default class Game extends React.Component {
     };
 
     render() {
-        return (
-            <canvas id="canvas" ref={ref => this.canvas = ref} height={160} width={340} />
-        );
+        if (!isServer()) {
+            return (
+                <canvas id="canvas" ref={ref => this.canvas = ref} height={160} width={340} />
+            );
+        } else {
+            return (<div>Dinocore game would be displayed here.</div>);
+        }
     }
 };
