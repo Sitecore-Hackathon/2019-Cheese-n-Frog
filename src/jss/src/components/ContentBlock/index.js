@@ -9,7 +9,10 @@ const options = {
 
 const ContentBlock = ({ fields }) => (
   <React.Fragment>
-    <Game {...options} />
+    <div className="content">
+      <div className="sitelogo"><img src={'/img/dinocore-logo.png'} /></div>
+      <div className="game"><Game options={options} /></div>
+    </div>
   </React.Fragment>
 );
 

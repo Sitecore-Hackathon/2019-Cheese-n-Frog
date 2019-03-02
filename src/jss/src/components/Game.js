@@ -191,7 +191,7 @@ export default class Game extends React.Component {
         }
         if (this.highScore) {
             ctx.textAlign = "left";
-            ctx.fillText('HIGH  ' + Math.floor(this.highScore), 30, 23);
+            ctx.fillText('HIGHSCORE  ' + Math.floor(this.highScore), 30, 23);
         }
 
         let pop = 0;

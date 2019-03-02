@@ -28,7 +28,7 @@ let Navigation = ({ t, i18n }) => (
       </NavLink>
     </h5>
     <nav className="my-2 my-md-0 mr-md-3">
-      <a
+      {/* <a
         className="p-2 text-light"
         href="https://jss.sitecore.net"
         target="_blank"
@@ -41,7 +41,7 @@ let Navigation = ({ t, i18n }) => (
       </NavLink>
       <NavLink to="/graphql" className="p-2 text-light">
         {t('GraphQL')}
-      </NavLink>
+      </NavLink> */}
     </nav>
   </div>
 );
