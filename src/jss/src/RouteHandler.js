@@ -7,6 +7,7 @@ import { dataFetcher } from './dataFetcher';
 import config from './temp/config';
 import Layout from './Layout';
 import NotFound from './NotFound';
+import { RouteRenderFunctionContext } from './components/RouteRenderFunctionContext';
 
 // Dynamic route handler for Sitecore items.
 // Because JSS app routes are defined in Sitecore, traditional static React routing isn't enough -
@@ -87,7 +88,10 @@ export default class RouteHandler extends React.Component {
   /**
    * Loads route data from Sitecore Layout Service into state.routeData
    */
-  updateRouteData() {
+  updateRouteData(score, highScore) {
+    const scoreToSend = score || 0;
+    const highScoreToSend = highScore || 0;
+
     let sitecoreRoutePath = this.props.route.match.params.sitecoreRoute || '/';
     if (!sitecoreRoutePath.startsWith('/')) {
       sitecoreRoutePath = `/${sitecoreRoutePath}`;
@@ -96,7 +100,7 @@ export default class RouteHandler extends React.Component {
     const language = this.props.route.match.params.lang || this.state.defaultLanguage;
 
     // get the route data for the new route
-    getRouteData(sitecoreRoutePath, language).then((routeData) => {
+    getRouteData(sitecoreRoutePath, language, scoreToSend, highScoreToSend).then((routeData) => {
       if (routeData !== null && routeData.sitecore && routeData.sitecore.route) {
         // set the sitecore context data and push the new route
         SitecoreContextFactory.setSitecoreContext({
@@ -179,7 +183,11 @@ export default class RouteHandler extends React.Component {
     }
 
     // Render the app's root structural layout
-    return <Layout route={routeData.sitecore.route} />;
+    return (
+      <RouteRenderFunctionContext.Provider value={(score, highScore) => this.updateRouteData(score, highScore)}>
+        <Layout route={routeData.sitecore.route} />
+      </RouteRenderFunctionContext.Provider>
+    );
   }
 }
 
@@ -197,10 +205,15 @@ export function setServerSideRenderingState(ssrState) {
  * @param {string} route Route path to get data for (e.g. /about)
  * @param {string} language Language to get route data in (content language, e.g. 'en')
  */
-function getRouteData(route, language) {
+function getRouteData(route, language, score, highScore) {
   const fetchOptions = {
     layoutServiceConfig: { host: config.sitecoreApiHost },
-    querystringParams: { sc_lang: language, sc_apikey: config.sitecoreApiKey },
+    querystringParams: {
+      sc_lang: language,
+      sc_apikey: config.sitecoreApiKey,
+      score: score,
+      highScore: highScore
+    },
     fetcher: dataFetcher,
   };
 

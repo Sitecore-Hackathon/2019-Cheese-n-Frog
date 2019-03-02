@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 
 const STATUS = {
@@ -51,7 +49,7 @@ export default class Game extends React.Component {
         this.options = {
             fps: 60,
             skySpeed: 40,
-            groundSpeed: 100,
+            groundSpeed: 150,
             wall: wall,
             audio: audio,
             skyImage: skyImage,
@@ -60,6 +58,7 @@ export default class Game extends React.Component {
             obstacleImage: obstacleImage,
             skyOffset: 0,
             groundOffset: 0,
+            getObstacles: () => [],
             ...this.props.options
         };
 
@@ -227,6 +226,9 @@ export default class Game extends React.Component {
     }
 
     __obstaclesGenerate() {
+        // Uncomment this line to get obstacles from the Layout Service
+        // return this.options.getObstacles(this.score, this.highScore);
+
         let res = [];
         for (let i = 0; i < 10; ++i) {
             let random = Math.floor(Math.random() * 100) % 60;
