@@ -1,9 +1,0 @@
-{
-  "sitecore": {
-    "instancePath": "C:\\inetpub\\wwwroot\\hackathon.sc",
-    "apiKey": "{5339D3FA-E63B-4FFF-9349-CC2C76413C47}",
-    "deploySecret": "9d9v4klsayugzbpn7knzsjjk70bto92g5hmeypaw5x3",
-    "deployUrl": "http://dinocore.sc/sitecore/api/jss/import",
-    "layoutServiceHost": "http://dinocore.sc"
-  }
-}
