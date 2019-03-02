@@ -9,3 +9,4 @@ module.exports = {
   "graphQLEndpointPath": "/api/dinocore",
   "graphQLEndpoint": "http://localhost:3000/api/dinocore?sc_apikey={5339D3FA-E63B-4FFF-9349-CC2C76413C47}"
 };
+// reloadnow

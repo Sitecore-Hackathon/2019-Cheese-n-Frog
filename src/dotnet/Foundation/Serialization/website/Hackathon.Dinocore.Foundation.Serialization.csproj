@@ -95,6 +95,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Config\Include\Foundation\Hackathon.Dinocore.Foundation.JSS.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="web.config" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="web.Debug.config">
