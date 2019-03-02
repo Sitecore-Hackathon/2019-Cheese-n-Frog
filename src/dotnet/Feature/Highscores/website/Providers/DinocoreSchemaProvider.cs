@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using GraphQL.Types;
+﻿using GraphQL.Types;
 using Hackathon.Dinocore.Feature.Highscores.Models;
 using Sitecore.Configuration;
 using Sitecore.ContentSearch;
 using Sitecore.ContentSearch.Linq;
-using Sitecore.Data;
-using Sitecore.Diagnostics;
 using Sitecore.SecurityModel;
 using Sitecore.Services.GraphQL.Schemas;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Hackathon.Dinocore.Feature.Highscores.Providers
 {
