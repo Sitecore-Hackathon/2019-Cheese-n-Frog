@@ -38,6 +38,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serialization", "Serializat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon.Dinocore.Foundation.Serialization", "src\dotnet\Foundation\Serialization\website\Hackathon.Dinocore.Foundation.Serialization.csproj", "{9613D115-3215-4961-AE41-2F72AE5DF471}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Collection", "Collection", "{D19DCD0C-A4C0-451B-9E89-FEBF36913F13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon.Dinocore.Feature.Collection.Website", "src\dotnet\Feature\Collection\website\Hackathon.Dinocore.Feature.Collection.Website.csproj", "{EB83CA65-541D-4BF3-94C3-C9E9D6D92899}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +56,10 @@ Global
 		{9613D115-3215-4961-AE41-2F72AE5DF471}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9613D115-3215-4961-AE41-2F72AE5DF471}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9613D115-3215-4961-AE41-2F72AE5DF471}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB83CA65-541D-4BF3-94C3-C9E9D6D92899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB83CA65-541D-4BF3-94C3-C9E9D6D92899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB83CA65-541D-4BF3-94C3-C9E9D6D92899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB83CA65-541D-4BF3-94C3-C9E9D6D92899}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +70,8 @@ Global
 		{8DDAC51B-0C7F-473F-8A37-1358DD26154F} = {2C02E6EB-421A-4A85-A594-CB1E387B1E08}
 		{B38C5970-6545-43C5-A520-1CF3CEAC6187} = {4FDA1DCD-D33E-447E-91C1-F4AE818E2CF0}
 		{9613D115-3215-4961-AE41-2F72AE5DF471} = {B38C5970-6545-43C5-A520-1CF3CEAC6187}
+		{D19DCD0C-A4C0-451B-9E89-FEBF36913F13} = {17DD5718-6E13-4F2C-9738-B410396D4552}
+		{EB83CA65-541D-4BF3-94C3-C9E9D6D92899} = {D19DCD0C-A4C0-451B-9E89-FEBF36913F13}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {311DA37D-528B-43B2-A99B-E7253F841D46}
