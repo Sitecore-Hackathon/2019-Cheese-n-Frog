@@ -1,0 +1,182 @@
+a[target='_blank']:after {
+  content: '\1F5D7'
+}
+
+/*
+  Hides Sitecore Experience Editor markup,
+  if you run the app in connected mode while the Sitecore cookies
+  are set to edit mode.
+*/
+.scChromeData, .scpm { display: none !important; }
+
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.text-light {
+  color: #fff !important;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+}
+
+.not-found {
+  position: absolute; left: 50%; top: 50%; margin-left: -285px; margin-top: -190px;
+}
+
+html {
+  font-weight: normal;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background: #2b3e50;
+}
+
+.nav {
+  background-color: #4e5d6c;
+}
+
+#canvas {
+  background-color: #fff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+header {
+  background-color: 2b3e50;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  background: #2b3e50;
+}
+
+figure {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+blockquote {
+  margin: 0;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 1.29;
+}
+
+button { 
+  text-decoration: none;
+  padding: 0;
+  border: 0;
+  text-align: inherit;
+
+}
+
+.a-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.a-list > li {
+  padding: 0;
+  margin: 0;
+}
+
+.a-list--inline,
+.a-list--inlinehor {
+  display: inline-flex;
+}
+
+.a-list--hor,
+.a-list--inlinehor {
+  flex-direction: row;
+}
+
+.a-list--arrows {
+  margin-bottom: 16px;
+}
+
+.a-list--arrows > li {
+  position: relative;
+  padding-left: 17px;
+}
+
+.a-list--arrows > li:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 8px;
+  height: 13px;
+  background: transparent svg-url('<svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" viewBox="0.00800000037997961 0.010000000707805157 8 12.979000091552734"><path fill="#FFF" fill-rule="evenodd" d="M4.64 6.5L.01 11.259l1.683 1.73L8.008 6.5 6.324 4.77 1.694.01.008 1.741 4.64 6.5z"/></svg>') no-repeat left top;
+}
+
+.a-list--checked {
+  margin-bottom: 16px;
+}
+
+.a-list--checked > li {
+  position: relative;
+  padding-left: 2.2em;
+}
+
+.a-list--checked > li:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 1.3em;
+  width: 1.27em;
+  height: 1em;
+  background: transparent svg-url('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 18"> <g fill="none" fill-rule="evenodd" stroke="#0FA550" stroke-linecap="square" stroke-width="5"> <path d="M3.5 9.5l4.66 4.66M8.5 14.5L19.085 3.915"/> </g></svg>') no-repeat left top;
+}
+
+[class*="--blue"] .a-list--checked,
+[class*="--magenta"] .a-list--checked {
+  margin-bottom: 16px;
+}
+
+[class*="--blue"] .a-list--checked > li,
+[class*="--magenta"] .a-list--checked > li {
+  position: relative;
+  padding-left: 2.2em;
+}
+
+[class*="--blue"] .a-list--checked > li:after,
+[class*="--magenta"] .a-list--checked > li:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0.22em;
+  width: 1.27em;
+  height: 1em;
+  background: transparent svg-url('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 18"> <g fill="none" fill-rule="evenodd" stroke="#FFF" stroke-linecap="square" stroke-width="5"> <path d="M3.5 9.5l4.66 4.66M8.5 14.5L19.085 3.915"/> </g></svg>') no-repeat left top;
+}
+
+.hidden {
+  display: block;
+}
+.transparent {
+  background: transparent !important;
+}
