@@ -8,6 +8,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
+var tracker = require('../api/tracking');
+
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -37,6 +39,8 @@ var Game = function (_React$Component) {
         _classCallCheck(this, Game);
 
         var _this = _possibleConstructorReturn(this, (Game.__proto__ || Object.getPrototypeOf(Game)).call(this, props));
+
+        tracker.track('gary');
 
         _this.start = function () {
             if (_this.status === STATUS.START) {
