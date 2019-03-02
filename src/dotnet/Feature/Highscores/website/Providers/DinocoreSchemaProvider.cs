@@ -1,7 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using GraphQL.Types;
 using Hackathon.Dinocore.Feature.Highscores.Models;
+using Sitecore.Configuration;
+using Sitecore.ContentSearch;
+using Sitecore.ContentSearch.Linq;
+using Sitecore.Data;
+using Sitecore.Diagnostics;
+using Sitecore.SecurityModel;
 using Sitecore.Services.GraphQL.Schemas;
 
 namespace Hackathon.Dinocore.Feature.Highscores.Providers
@@ -10,14 +17,15 @@ namespace Hackathon.Dinocore.Feature.Highscores.Providers
     {
         public override IEnumerable<FieldType> CreateRootQueries()
         {
-            return new FieldType[]
-            {
-                new HighscoreQuery(),
-                new HighscoreMutation()
-            };
+            yield return new HighscoreQuery();
         }
 
-        protected class HighscoreQuery : RootFieldType<HighscoreGraphType, Highscore>
+        public override IEnumerable<FieldType> CreateRootMutations()
+        {
+            yield return new HighscoreMutation();
+        }
+
+        protected class HighscoreQuery : RootFieldType<HighscoresGraphType, IEnumerable<Highscore>>
         {
             public HighscoreQuery() : base(name: "highscoreQuery", description: "Gets some Highscore data")
             {
@@ -25,18 +33,39 @@ namespace Hackathon.Dinocore.Feature.Highscores.Providers
                 {
                     Name = "score", Description = "The current score"
                 };
-                this.Arguments = new QueryArguments(new [] { scoreArgument });
-            }
-            protected override Highscore Resolve(ResolveFieldContext context)
-            {
-
-                var highscore = new Highscore()
+                var amountArgument = new QueryArgument(typeof(IntGraphType))
                 {
-                    Created = DateTime.Now,
-                    Name = "GOGOGO",
-                    Score = 87434
+                    Name = "amount", Description = "The amount of high scores returned"
                 };
-                return highscore;
+                this.Arguments = new QueryArguments(new [] { scoreArgument, amountArgument });
+            }
+            protected override IEnumerable<Highscore> Resolve(ResolveFieldContext context)
+            {
+                var argumentScore = context.GetArgument<int>("score");
+                var argumentAmount = context.GetArgument<int>("amount", 5);
+
+                using (var searchContent = ContentSearchManager.GetIndex("sitecore_master_index").CreateSearchContext())
+                {
+                    
+                    var searchResults = searchContent.GetQueryable<HighscoreSearchResultItem>()
+                        .Where(i => i.LatestVersion &&
+                                    i.Language == "en" &&
+                                    i.TemplateId == Templates.Highscore.ID &&
+                                    i.Path.StartsWith("/sitecore/content"));
+                    var results = searchResults.GetResults();
+
+                    var highscores = (from doc in results.Hits
+                                     select new Highscore()
+                                     {
+                                         Name = doc.Document.GetField("Name").Value,
+                                         Created = doc.Document.CreatedDate,
+                                         Score = int.Parse(doc.Document.GetField("Score").Value)
+                                     }).ToList();
+                    var high = highscores.Where(hs => hs.Score > argumentScore).Take(argumentAmount);
+                    var low = highscores.Where(hs => hs.Score < argumentScore).Take(argumentAmount);
+
+                    return high.Concat(low);
+                }
             }
         }
 
@@ -46,20 +75,50 @@ namespace Hackathon.Dinocore.Feature.Highscores.Providers
             {
                 var scoreArgument = new QueryArgument(typeof(IntGraphType))
                 {
-                    Name = "score", Description = "The current score"
+                    Name = "score", Description = "The current score",
                 };
-                this.Arguments = new QueryArguments(new [] { scoreArgument });
+                var nameArgument = new QueryArgument(typeof(StringGraphType))
+                {
+                    Name = "name", Description = "The player name"
+                };
+                this.Arguments = new QueryArguments(new [] { scoreArgument, nameArgument });
             }
             protected override Highscore Resolve(ResolveFieldContext context)
             {
+               var argumentScore = context.GetArgument<int>("score", -1);
+               var argumentName = context.GetArgument<string>("name");
 
-                var highscore = new Highscore()
-                {
-                    Created = DateTime.Now,
-                    Name = "GOGOGO",
-                    Score = 87434
-                };
-                return highscore;
+               var master = Factory.GetDatabase("master");
+               var parentItem = master.Items["/sitecore/content/Highscores"];
+               var template = master.GetTemplate(Templates.Highscore.ID);
+
+               var highscore = new Highscore()
+               {
+                   Score = argumentScore,
+                   Name = argumentName,
+                   Created = DateTime.Now
+               };
+               using (new SecurityDisabler())
+               {
+                   var item = parentItem.Add(argumentName, template);
+                   item.Editing.BeginEdit();
+                   item["Score"] = argumentScore.ToString();
+                   item["Name"] = argumentName;
+                   highscore.Added = item.Editing.EndEdit();
+               }
+
+               return highscore;
+            }
+        }
+
+        protected class HighscoresGraphType : ObjectGraphType<IEnumerable<Highscore>>
+        {
+            public HighscoresGraphType()
+            {
+                Name = "Highscores";
+
+                Field<ListGraphType<HighscoreGraphType>>("items", resolve: context => context.Source);
+
             }
         }
 
@@ -72,6 +131,7 @@ namespace Hackathon.Dinocore.Feature.Highscores.Providers
                 Field<NonNullGraphType<StringGraphType>>("name", resolve: context => context.Source.Name);
                 Field<IntGraphType>("score", resolve: context => context.Source.Score);
                 Field<DateTimeGraphType>("created", resolve: context => context.Source.Created);
+                Field<BooleanGraphType>("added", resolve: context => context.Source.Added);
             }
         }
     }
