@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="App_Config\Include\Project\Hackathon.Dinocore.Project.Dinocore.config" />
     <Content Include="App_Config\Include\Project\Hackathon.Dinocore.Project.Dinocore.Serialization.config" />
+    <Content Include="App_Config\Include\Project\z.Common.Website.DevSettings.config" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
