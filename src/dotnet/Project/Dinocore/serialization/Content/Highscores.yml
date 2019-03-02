@@ -1,0 +1,18 @@
+﻿---
+ID: "fc8d9508-dc8b-4188-826b-133fd698a729"
+Parent: "0de95ae4-41ab-4d01-9eb0-67441b7c2450"
+Template: "11a7125d-e377-4d8f-9dcb-b1558b07f72e"
+Path: /sitecore/content/Highscores
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190302T113335Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

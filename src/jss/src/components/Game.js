@@ -1,6 +1,5 @@
-
-
 import React from 'react';
+import GraphQLApi from '../api/graphql-api';
 
 const STATUS = {
     STOP: 'STOP',
