@@ -1,0 +1,22 @@
+﻿---
+ID: "3361ec18-3f49-49f3-b6fc-8ae5e66b28f3"
+Parent: "ecb54f65-92bd-4ed4-aaf7-3c3dd565c1b0"
+Template: "ecb54f65-92bd-4ed4-aaf7-3c3dd565c1b0"
+Path: /sitecore/templates/Feature/Highscores/Highscore/__Standard Values
+DB: master
+SharedFields:
+- ID: "a39cb1a7-a175-4272-8d6d-0106dae669b1"
+  Hint: Score
+  Value: $name
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190302T114636Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
