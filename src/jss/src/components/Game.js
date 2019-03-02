@@ -1,3 +1,6 @@
+// Original code from https://github.com/LzxHahaha/react-dinosaur-game
+// Dinosaur game modified by Cheese n Frog Sitecore Hackathon 2019 team
+
 import React from 'react';
 import { isServer } from '@sitecore-jss/sitecore-jss';
 
@@ -24,7 +27,10 @@ export default class Game extends React.Component {
                 }
             };
 
-            let audio = new Audio('/wav/death.wav')
+            // Load the assets from a different path when served by Sitecore or disconnected mode.
+            const baseAssetPath = window.location.hostname === 'localhost' ? '' : '/dist/dinocore';
+
+            let audio = new Audio(baseAssetPath + '/wav/death.wav');
             let wall = new Image();
             let skyImage = new Image();
             let groundImage = new Image();
@@ -39,14 +45,14 @@ export default class Game extends React.Component {
             groundImage.onload = onImageLoaded;
             playerImage.onload = onImageLoaded;
 
-            wall.src = '/img/wall.png';
-            skyImage.src = '/img/cloud.png';
-            groundImage.src = '/img/ground.png';
-            playerImage.src = '/img/dinosaur.png';
-            playerLeftImage.src = '/img/dinosaur_left.png';
-            playerRightImage.src = '/img/dinosaur_right.png';
-            playerDieImage.src = '/img/dinosaur_die.png';
-            obstacleImage.src = '/img/obstacle.png';
+            wall.src = baseAssetPath + '/img/wall.png';
+            skyImage.src = baseAssetPath + '/img/cloud.png';
+            groundImage.src = baseAssetPath + '/img/ground.png';
+            playerImage.src = baseAssetPath + '/img/dinosaur.png';
+            playerLeftImage.src = baseAssetPath + '/img/dinosaur_left.png';
+            playerRightImage.src = baseAssetPath + '/img/dinosaur_right.png';
+            playerDieImage.src = baseAssetPath + '/img/dinosaur_die.png';
+            obstacleImage.src = baseAssetPath + '/img/obstacle.png';
 
             this.options = {
                 fps: 60,
