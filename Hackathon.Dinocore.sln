@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feature", "Feature", "{17DD5718-6E13-4F2C-9738-B410396D4552}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Foundation", "Foundation", "{4FDA1DCD-D33E-447E-91C1-F4AE818E2CF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{15D97D61-D597-42EC-B7E9-E9EC8130E630}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{ADCA10F7-A1D2-407B-8074-60418168C02E}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		nuget.config = nuget.config
+		publishsettings.targets = publishsettings.targets
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{DAFED8F5-6CBD-4384-AAD6-DC3BCCF24911}"
+	ProjectSection(SolutionItems) = preProject
+		documentation\README.md = documentation\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{D27C83D2-2EAF-4E44-A1ED-2B3C2EBB5854}"
+	ProjectSection(SolutionItems) = preProject
+		documentation\images\deal-with-it.gif = documentation\images\deal-with-it.gif
+		documentation\images\hackathon.png = documentation\images\hackathon.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dinocore", "Dinocore", "{2C02E6EB-421A-4A85-A594-CB1E387B1E08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon.Dinocore.Project.Dinocore.Website", "src\dotnet\Project\Dinocore\website\Hackathon.Dinocore.Project.Dinocore.Website.csproj", "{8DDAC51B-0C7F-473F-8A37-1358DD26154F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serialization", "Serialization", "{B38C5970-6545-43C5-A520-1CF3CEAC6187}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon.Dinocore.Foundation.Serialization", "src\dotnet\Foundation\Serialization\website\Hackathon.Dinocore.Foundation.Serialization.csproj", "{9613D115-3215-4961-AE41-2F72AE5DF471}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DDAC51B-0C7F-473F-8A37-1358DD26154F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DDAC51B-0C7F-473F-8A37-1358DD26154F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DDAC51B-0C7F-473F-8A37-1358DD26154F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DDAC51B-0C7F-473F-8A37-1358DD26154F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9613D115-3215-4961-AE41-2F72AE5DF471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9613D115-3215-4961-AE41-2F72AE5DF471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9613D115-3215-4961-AE41-2F72AE5DF471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9613D115-3215-4961-AE41-2F72AE5DF471}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D27C83D2-2EAF-4E44-A1ED-2B3C2EBB5854} = {DAFED8F5-6CBD-4384-AAD6-DC3BCCF24911}
+		{2C02E6EB-421A-4A85-A594-CB1E387B1E08} = {15D97D61-D597-42EC-B7E9-E9EC8130E630}
+		{8DDAC51B-0C7F-473F-8A37-1358DD26154F} = {2C02E6EB-421A-4A85-A594-CB1E387B1E08}
+		{B38C5970-6545-43C5-A520-1CF3CEAC6187} = {4FDA1DCD-D33E-447E-91C1-F4AE818E2CF0}
+		{9613D115-3215-4961-AE41-2F72AE5DF471} = {B38C5970-6545-43C5-A520-1CF3CEAC6187}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {311DA37D-528B-43B2-A99B-E7253F841D46}
+	EndGlobalSection
+EndGlobal
