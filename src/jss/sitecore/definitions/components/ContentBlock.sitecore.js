@@ -13,8 +13,6 @@ export default function(manifest) {
     // totally optional, but fun
     icon: SitecoreIcon.DocumentTag,
     fields: [
-      { name: 'heading', type: CommonFieldTypes.SingleLineText },
-      { name: 'content', type: CommonFieldTypes.RichText },
     ],
   });
 }
