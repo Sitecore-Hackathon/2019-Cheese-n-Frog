@@ -38,9 +38,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serialization", "Serializat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon.Dinocore.Foundation.Serialization", "src\dotnet\Foundation\Serialization\website\Hackathon.Dinocore.Foundation.Serialization.csproj", "{9613D115-3215-4961-AE41-2F72AE5DF471}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Collection", "Collection", "{D19DCD0C-A4C0-451B-9E89-FEBF36913F13}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Highscores", "Highscores", "{D19DCD0C-A4C0-451B-9E89-FEBF36913F13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon.Dinocore.Feature.Collection.Website", "src\dotnet\Feature\Collection\website\Hackathon.Dinocore.Feature.Collection.Website.csproj", "{EB83CA65-541D-4BF3-94C3-C9E9D6D92899}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon.Dinocore.Feature.Highscores", "src\dotnet\Feature\Highscores\website\Hackathon.Dinocore.Feature.Highscores.csproj", "{EB83CA65-541D-4BF3-94C3-C9E9D6D92899}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
