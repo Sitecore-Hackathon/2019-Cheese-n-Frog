@@ -1,0 +1,15 @@
+{
+  "main.css": "/dist/dinocore/static/css/main.d2609ce0.chunk.css",
+  "main.js": "/dist/dinocore/static/js/main.f2868697.chunk.js",
+  "main.js.map": "/dist/dinocore/static/js/main.f2868697.chunk.js.map",
+  "static/css/1.9772be7f.chunk.css": "/dist/dinocore/static/css/1.9772be7f.chunk.css",
+  "static/js/1.a4517e7a.chunk.js": "/dist/dinocore/static/js/1.a4517e7a.chunk.js",
+  "static/js/1.a4517e7a.chunk.js.map": "/dist/dinocore/static/js/1.a4517e7a.chunk.js.map",
+  "runtime~main.js": "/dist/dinocore/static/js/runtime~main.b360e54d.js",
+  "runtime~main.js.map": "/dist/dinocore/static/js/runtime~main.b360e54d.js.map",
+  "static/css/1.9772be7f.chunk.css.map": "/dist/dinocore/static/css/1.9772be7f.chunk.css.map",
+  "static/css/main.d2609ce0.chunk.css.map": "/dist/dinocore/static/css/main.d2609ce0.chunk.css.map",
+  "index.html": "/dist/dinocore/index.html",
+  "precache-manifest.46e47d056cb5db36b69aeb5c63b148e7.js": "/dist/dinocore/precache-manifest.46e47d056cb5db36b69aeb5c63b148e7.js",
+  "service-worker.js": "/dist/dinocore/service-worker.js"
+}
