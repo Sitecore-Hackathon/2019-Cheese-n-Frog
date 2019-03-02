@@ -1,6 +1,7 @@
 import React from 'react';
 import Game from '../Game';
 import { isServer } from '@sitecore-jss/sitecore-jss';
+import LeaderBoard from '../LeaderBoard/index';
 
 const options = {
   fps: 60,
@@ -17,6 +18,7 @@ const ContentBlock = ({ fields }) => {
       <div className="content">
         <div className="sitelogo"><img src={baseAssetPath + '/img/dinocore-logo.png'} alt={ 'Dinocore! Profiling by gaming' } /></div>
         <div className="game"><Game options={options} /></div>
+        <LeaderBoard />
       </div>
     </React.Fragment>
   )
