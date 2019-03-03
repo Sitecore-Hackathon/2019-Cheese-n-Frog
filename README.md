@@ -7,10 +7,6 @@ Sitecore Hackathon 2019 entry by Team **Cheese'n'Frog**
 Category: "Best enhancement to JSS to change a JSS component rendering behavior based on user's session data"
 
 Youtube video: **[Dinocore highlights](http://youtube.com/watch?v=xxx)**
-   - Create a 2 – 10 minutes video explaining the module’s functionality (A link to youtube video)
-   - What problem was solved
-   - How did you solve it
-   - What is the end result
 
 ## What it solves
 The solution shows a way to personalise JSS client behaviour based on data from/thru the sitecore server. Personalitation by user context showcased using a simple game and using the highscores as data.
@@ -27,8 +23,9 @@ This solution does 2 things:
 ---
 
 ## How to install
-	Precise and Clear Installation Instructions document (1 – 2 pages)
-	Dowload package from x...
+Download and install BOTH packages:
+	[Dowload package 1](package1.zip)
+   [Dowload package 2](package2.zip)
 
 ---
 
