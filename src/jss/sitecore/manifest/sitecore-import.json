@@ -1,0 +1,86 @@
+{
+  "templates": [
+    {
+      "name": "App Route",
+      "fields": [
+        {
+          "name": "pageTitle",
+          "displayName": "Page Title",
+          "section": "Page Metadata",
+          "type": "Single-Line Text"
+        }
+      ],
+      "insertOptions": [
+        "App Route"
+      ],
+      "route": false,
+      "defaultRoute": true
+    },
+    {
+      "name": "ContentBlock",
+      "displayName": "Content Block",
+      "icon": "Office/16x16/document_tag.png",
+      "fields": []
+    }
+  ],
+  "placeholders": [
+    {
+      "name": "jss-main",
+      "displayName": "Main"
+    },
+    {
+      "name": "jss-tabs",
+      "displayName": "Tabs",
+      "id": "tabs-placeholder"
+    },
+    {}
+  ],
+  "appName": "dinocore",
+  "language": "en",
+  "renderings": [
+    {
+      "name": "ContentBlock",
+      "displayName": "Content Block",
+      "icon": "Office/16x16/document_tag.png",
+      "exposedPlaceholders": [],
+      "dataSourceTemplate": "ContentBlock"
+    }
+  ],
+  "wipeExisting": false,
+  "items": {
+    "routes": [
+      {
+        "id": "home-page",
+        "name": "home",
+        "layout": {
+          "renderings": [
+            {
+              "renderingName": "ContentBlock",
+              "placeholderKey": "/jss-main",
+              "placeholderName": "jss-main",
+              "dataSource": {
+                "name": "home-jss-main-ContentBlock-1",
+                "displayName": "ContentBlock-1",
+                "template": "ContentBlock",
+                "fields": []
+              },
+              "renderingParams": [],
+              "uid": "{2C4A53CC-9DA8-5F51-9D79-6EE2FC671B2D}"
+            }
+          ],
+          "placeholders": [
+            "jss-main"
+          ]
+        },
+        "fields": [
+          {
+            "name": "pageTitle",
+            "value": "Dinocore! Profiling by gaming"
+          }
+        ]
+      }
+    ],
+    "nonRoutes": []
+  },
+  "dictionary": []
+}

@@ -3,6 +3,7 @@
 
 import React from 'react';
 import { isServer } from '@sitecore-jss/sitecore-jss';
+import GraphQLApi from '../api/graphql-api';
 
 const STATUS = {
     STOP: 'STOP',
@@ -165,7 +166,7 @@ export default class Game extends React.Component {
         ctx.translate(this.options.groundOffset, 0);
         ctx.drawImage(this.options.playerImage[this.playerStatus], 80, 64 - this.jumpHeight);
 
-        if(this.playerStatus === 3) {
+        if (this.playerStatus === 3) {
             this.options.audio.play();
         }
 
@@ -189,11 +190,27 @@ export default class Game extends React.Component {
         ctx.textAlign = "right";
         ctx.fillStyle = "#ad0000";
         ctx.fillText(scoreText, width - 30, 23);
+
+        if (this.status === STATUS.OVER) {            
+            let score = window.localStorage['score'];
+            let highScore = window.localStorage['highScore'];
+            if (score >= highScore) {
+                // add highscore to sitecore
+                GraphQLApi.addHighscores(Math.round(score), 'Player 1')
+                    .then(response => {
+                        console.log('stuff', response, Math.round(score))
+                    })
+                    .catch(err => console.log('fetch error : ', err))
+            }
+
+        }
         if (this.status === STATUS.START) {
             this.score += 0.5;
+            window.localStorage['score'] = this.score;
             if (this.score > this.highScore) {
                 this.highScore = this.score;
                 window.localStorage['highScore'] = this.score;
+
             }
             this.currentDistance += groundSpeed;
             if (this.score % 4 === 0) {

@@ -1,0 +1,25 @@
+﻿---
+ID: "11411ee5-010f-4f5f-87f4-cea1f3e1190f"
+Parent: "fc8d9508-dc8b-4188-826b-133fd698a729"
+Template: "ecb54f65-92bd-4ed4-aaf7-3c3dd565c1b0"
+Path: /sitecore/content/Highscores/Player 1
+DB: master
+SharedFields:
+- ID: "a39cb1a7-a175-4272-8d6d-0106dae669b1"
+  Hint: Score
+  Value: 232
+- ID: "f88dbacc-acc0-4b33-bda6-964103c1f956"
+  Hint: Name
+  Value: Player 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190303T001943Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        extranet\anonymous
