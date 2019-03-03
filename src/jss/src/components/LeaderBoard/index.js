@@ -1,5 +1,13 @@
 import React from 'react';
+import GraphQLApi from '../../api/graphql-api';
 
+const compare = (a,b) =>{
+    if (a.score < b.score)
+      return 1;
+    if (a.score > b.score)
+      return -1;
+    return 0;
+  }
 
 const LeaderboardHeader = () => {
     return (
@@ -14,59 +22,50 @@ const ColumnHeader = ({
     onClickAll
 }) => (
         <div className="row colheader">
-            <div className="col-xs-1">
+            <div className="col-md-2">
                 <h4>#</h4>
             </div>
-            <div className="col-xs-5">
+            <div className="col-md-5">
                 <h4>Name</h4>
             </div>
-            <div className="col-xs-3 recent">
-                <h4 onClick={onClick} >Last 30 days</h4>
-            </div>
-            <div className="col-xs-3 alltime">
-                <h4 onClick={onClickAll} >All time</h4>
+            <div className="col-md-5 recent">
+                <h4 onClick={onClick} >Score</h4>
             </div>
         </div>
     );
 
-const User = ({ rank, img, username, recent, alltime }) => {
+const User = ({ rank, username, recent, alltime }) => {
     return (
         <div className="row users  vcenter">
-            <div className="col-xs-1 rank">
+            <div className="col-md-2 rank cgafont">
                 <h4>{rank}</h4>
             </div>
-            <div className="col-xs-5 name">
-                <img src={img} alt='avatar' /> <a href={''} target="_blank">{username}</a>
+            <div className="col-md-5 name cgafont">
+                <img src={`https://avatars.dicebear.com/v2/male/${username}.svg`} alt='avatar' /> <a href="/">{username}</a>
             </div>
-            <div className="col-xs-3">
+            <div className="col-md-5 cgafont">
                 <h4>{recent}</h4>
-            </div>
-            <div className="col-xs-3">
-                <h4>{alltime}</h4>
             </div>
         </div>
     )
 }
 
 class LeaderBoard extends React.Component<any, any> {
-    constructor(props) {
-        super(props);
-    }
+
+    
 
     componentDidMount() {
-        const fetchInit = {
-            method: 'GET',
-            mode: 'cors'
-        };
-
-        fetch(`${this.props.apiURL}`, fetchInit)
-            .then(response => response.json())
-            .then(data => {
+        let score = window.localStorage['score'] || 0;
+        setInterval(() => {
+            GraphQLApi.getHighscores(Math.round(score), 10)
+            .then(response => {
+                let list = response.highscoreQuery.items.sort(compare);
                 this.setState({
-                    list: data
+                    list: list
                 });
             })
             .catch(err => console.log('fetch error : ', err))
+        }, 1000);
     }
 
     _clickAllTime(e) {
@@ -82,7 +81,7 @@ class LeaderBoard extends React.Component<any, any> {
     render() {
         let userlist = (this.state && this.state.list) ? this.state.list.map(
             (user, i) => 
-                <User username={user.username} rank={i + 1} img={user.img} recent={user.recent} alltime={user.alltime} />) : null;
+                <User key={ i } username={user.name} rank={i + 1} img={user.img} recent={user.score} alltime={user.alltime} />) : null;
 
         return (
             <div className="container">

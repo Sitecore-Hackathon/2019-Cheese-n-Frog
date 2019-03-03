@@ -5,12 +5,16 @@ import { highscoreQuery, highscoreMutation } from './queries';
 
 const apiHost = 'http://dinocore.sc';
 const link = createHttpLink({
-    uri: `${apiHost}/sitecore/api/graph/items/dinocore`
+    uri: `${apiHost}/sitecore/api/graph/items/dinocore?sc_apikey={5339D3FA-E63B-4FFF-9349-CC2C76413C47}`,
+    //credentials: 'include',
+    fetchOptions: {
+        //mode: 'no-cors',
+      },
 });
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
-    link,
+    link,    
 });
 
 const getHighscores = (score: number, amount: number = 5) => {
@@ -24,7 +28,7 @@ const getHighscores = (score: number, amount: number = 5) => {
 
 const addHighscores = (score: number, name: string) => {
     var variables = { score: score,  name: name };
-    return client.query({ query: highscoreMutation, variables: variables }).then(function (response) {
+    return client.mutate({ mutation: highscoreMutation, variables: variables }).then(function (response) {
         return response.data;
     }).catch(function (error) {
         return error;
