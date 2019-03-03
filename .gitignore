@@ -317,3 +317,7 @@ ASALocalRun/
 
 # MSBuild Binary and Structured Log
 *.binlog
+/src/jss/build/
+/src/jss/sitecore/package/
+/src/jss/sitecore/manifest/
+/src/jss/src/temp/
