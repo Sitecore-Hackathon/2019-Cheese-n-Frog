@@ -4,6 +4,7 @@
 import React from 'react';
 import { isServer } from '@sitecore-jss/sitecore-jss';
 import { baseAssetPath } from '../utils/assets';
+import { isDisconnectedMode } from '../utils/applicationMode';
 import GraphQLApi from '../api/graphql-api';
 
 const STATUS = {
@@ -195,7 +196,7 @@ export default class Game extends React.Component {
         if (this.status === STATUS.OVER) {            
             let score = window.localStorage['score'];
             let highScore = window.localStorage['highScore'];
-            if (score >= highScore) {
+            if (score >= highScore && !isDisconnectedMode()) {
                 // add highscore to sitecore
                 GraphQLApi.addHighscores(Math.round(score), 'Player 1')
                     .then(response => {
