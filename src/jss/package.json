@@ -10,7 +10,7 @@
     ],
     "sitecoreDistPath": "/dist/dinocore",
     "sitecoreConfigPath": "/App_Config/Include/zzz",
-    "graphQLEndpointPath": "/api/dinocore",
+    "graphQLEndpointPath": "/sitecore/api/graph/items/dinocore",
     "language": "en"
   },
   "engines": {
