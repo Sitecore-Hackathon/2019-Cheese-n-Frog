@@ -1,5 +1,7 @@
 ![Dinocore Logo](documentation/images/logo.png?raw=true "Dinocore Logo")
 
+![Sitecore Hackathon Logo](documentation/images/hackathon.png?raw=true "Sitecore Hackathon Logo")
+
 # Dinocore
 
 Sitecore Hackathon 2019 entry by Team **Cheese'n'Frog**
@@ -25,8 +27,8 @@ This solution could be adapted to fit other needs but the general pattern remain
 This solution does 3 things:
 
 1. Client-side it polls a GraphQL endpoint for all relevant highscores based on the current user's highscore. The highscores become visible client-side in the leaderboard.
-1. Server-side it leverages JSS, GraphQL and the ContentSearch API to produce a list of relevant highscores for the leaderboard.
-1. Server-side a GraphQL mutation is used for adding a new highscores to the leaderboard.
+2. Server-side it leverages JSS, GraphQL and the ContentSearch API to produce a list of relevant highscores for the leaderboard.
+3. Server-side a GraphQL mutation is used for adding a new highscores to the leaderboard.
 
 ## BAD PRACTICE WARNING
 
@@ -76,10 +78,12 @@ The GraphQL mutation classes in [DinocoreSchemaProvider.cs](src/dotnet/Feature/H
 
 Follow these steps after installing the module:
 
-* Point your browser to **[http://dinocore.sc](http://dinocore.sc)**
+- Point your browser to **[http://dinocore.sc](http://dinocore.sc)**
+
 ![Dinocore screenshot](documentation/images/screenshot.png?raw=true "Dinocore screenshot")
-* Click in the game window, directly below the Dinocore logo, to start a new game.
-* You can avoid obstacles by jumping. Use the **__left mouse__** button or press the **__spacebar__** key to jump.
+
+- Click in the game window, directly below the Dinocore logo, to start a new game.
+- You can avoid obstacles by jumping. Use the **__left mouse__** button or press the **__spacebar__** key to jump.
 
 While you are running, your current highscore will be continuously updated and stacked up against the highscores of other players. Keep your eyes on the leaderboard while you race!
 
