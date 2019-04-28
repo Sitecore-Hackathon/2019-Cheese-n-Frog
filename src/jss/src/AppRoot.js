@@ -1,7 +1,6 @@
 import React from 'react';
 import { SitecoreContext } from '@sitecore-jss/sitecore-jss-react';
 import { Route, Switch } from 'react-router-dom';
-import { ApolloProvider } from 'react-apollo';
 import componentFactory from './temp/componentFactory';
 import SitecoreContextFactory from './lib/SitecoreContextFactory';
 import RouteHandler from './RouteHandler';
@@ -18,24 +17,20 @@ export const routePatterns = [
 ];
 
 // wrap the app with:
-// ApolloProvider: provides an instance of Apollo GraphQL client to the app to make Connected GraphQL queries.
-//    Not needed if not using connected GraphQL.
 // SitecoreContext: provides component resolution and context services via withSitecoreContext
 // Router: provides a basic routing setup that will resolve Sitecore item routes and allow for language URL prefixes.
-const AppRoot = ({ path, Router, graphQLClient }) => {
+const AppRoot = ({ path, Router }) => {
   const routeRenderFunction = (props) => <RouteHandler route={props} />;
   return (
-    <ApolloProvider client={graphQLClient}>
-      <SitecoreContext componentFactory={componentFactory} contextFactory={SitecoreContextFactory}>
-        <Router location={path} context={{}}>
-          <Switch>
-            {routePatterns.map((routePattern) => (
-              <Route key={routePattern} path={routePattern} render={routeRenderFunction} />
-            ))}
-          </Switch>
-        </Router>
-      </SitecoreContext>
-    </ApolloProvider>
+    <SitecoreContext componentFactory={componentFactory} contextFactory={SitecoreContextFactory}>
+      <Router location={path} context={{}}>
+        <Switch>
+          {routePatterns.map((routePattern) => (
+            <Route key={routePattern} path={routePattern} render={routeRenderFunction} />
+          ))}
+        </Switch>
+      </Router>
+    </SitecoreContext>
   );
 };
 

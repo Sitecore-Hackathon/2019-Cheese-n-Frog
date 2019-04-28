@@ -1,4 +1,6 @@
 import i18n from 'i18next';
+// fetch is not used in this file but it is required in the bundle for i18next-fetch-backend to work in SSR mode.
+import fetch from 'isomorphic-fetch';
 import fetchBackend from 'i18next-fetch-backend';
 import { reactI18nextModule } from 'react-i18next';
 import config from './temp/config';

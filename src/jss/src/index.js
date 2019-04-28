@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import AppRoot from './AppRoot';
 import { setServerSideRenderingState } from './RouteHandler';
-import GraphQLClientFactory from './lib/GraphQLClientFactory';
-import config from './temp/config';
 import i18ninit from './i18n';
 
 /* eslint-disable no-underscore-dangle */
@@ -38,18 +36,6 @@ if (__JSS_STATE__) {
 }
 
 /*
-  GraphQL Data
-  The Apollo Client needs to be initialized to make GraphQL available to the JSS app.
-  Not using GraphQL? Remove this, and the ApolloContext from `AppRoot`.
-*/
-// Apollo supports SSR of GraphQL queries, so like JSS SSR, it has an object we can pre-hydrate the client cache from
-// to avoid needing to re-run GraphQL queries after the SSR page loads
-const initialGraphQLState =
-  __JSS_STATE__ && __JSS_STATE__.APOLLO_STATE ? __JSS_STATE__.APOLLO_STATE : null;
-
-const graphQLClient = GraphQLClientFactory(config.graphQLEndpoint, false, initialGraphQLState);
-
-/*
   App Rendering
 */
 // initialize the dictionary, then render the app
@@ -62,7 +48,6 @@ i18ninit().then(() => {
     <AppRoot
       path={window.location.pathname}
       Router={BrowserRouter}
-      graphQLClient={graphQLClient}
     />,
     rootElement
   );

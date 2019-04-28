@@ -88,7 +88,6 @@
     "build:server": "cross-env-shell NODE_ENV=production \"webpack --config server/server.webpack.config.js\"",
     "bootstrap:connected": "node scripts/bootstrap.js",
     "bootstrap:disconnected": "node scripts/bootstrap.js --disconnected",
-    "graphql:update": "node -r babel-register ./scripts/update-graphql-fragment-data.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
