@@ -42,9 +42,29 @@ The GraphQL mutation classes in [DinocoreSchemaProvider.cs](src/dotnet/Feature/H
 ## How to install
 
 1. Install a Sitecore 9.1 Initial Release (rev. 001564) instance named "dinocore" with a host entry named "dinocore.sc"
-   1. If you already have a Sitecore instance with a different name:
+   1. If you already have a Sitecore instance with a different hostname:
       1. Add a host file entry named "dinocore.sc" to 127.0.0.1
-      2. Add a binding to your Sitecore instance ISS website to "dinocore.sc"
+      2. Add a binding to your Sitecore instance ISS website to "dinocore.sc" on port 80
+      3. Add this to the configuration of your Sitecore instance Identity Server: `C:\inetpub\wwwroot\YoursitecoreInstance.identityserver\Config\production\Sitecore.IdentityServer.Host.xml`
+
+            ```xml
+            <?xml version="1.0" encoding="utf-8" ?>
+            <Settings>
+              <Sitecore>
+                <IdentityServer>
+                  <Clients>
+                    <DefaultClient>
+                      <AllowedCorsOrigins>
+                        <dinocore>http://dinocore.sc</dinocore>
+                      </AllowedCorsOrigins>
+                    </DefaultClient>
+                  </Clients>
+                </IdentityServer>
+              </Sitecore>
+            </Settings>
+            ```
+
+      4. Recycle the application pool of your Sitecore instance Identity Server.
 2. Download and install the Sitecore JSS Server Package for Sitecore 9.1 using the Sitecore Installation Wizard: [Sitecore JavaScript Services Server for Sitecore 9.1 XP 11.0.0 rev. 181031.zip](https://dev.sitecore.net/~/media/28F918CC225547EF9605C9ECD574D007.ashx)
 3. Download and install the Dinocore Sitecore package using the Sitecore Installation Wizard: [SCHackathon 2019 - Cheese n Frog - Dinocore-1.0.zip](sc.package/SCHackathon%202019%20-%20Cheese%20n%20Frog%20-%20Dinocore-1.0.zip)
 4. Open the Sitecore instance administration: [Sitecore Administration](http://dinocore.sc/sitecore)
