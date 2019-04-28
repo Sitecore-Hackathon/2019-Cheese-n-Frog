@@ -72,7 +72,8 @@ function transformPackageConfig() {
   return {
     jssAppName: packageConfig.config.appName,
     defaultLanguage: packageConfig.config.language || 'en',
-    graphQLEndpointPath: packageConfig.config.graphQLEndpointPath || null,
+    distPath: packageConfig.config.sitecoreDistPath || null,
+    graphQLEndpointPath: packageConfig.config.graphQLEndpointPath || null
   };
 }
 

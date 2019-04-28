@@ -2,10 +2,10 @@ import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { highscoreQuery, highscoreMutation } from './queries';
+import * as config from '../temp/config';
 
-const apiHost = 'http://dinocore.sc';
 const link = createHttpLink({
-    uri: `${apiHost}/sitecore/api/graph/items/dinocore?sc_apikey={5339D3FA-E63B-4FFF-9349-CC2C76413C47}`,
+    uri: config.graphQLEndpoint,
     //credentials: 'include',
     fetchOptions: {
         //mode: 'no-cors',
@@ -14,7 +14,7 @@ const link = createHttpLink({
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
-    link,    
+    link,
 });
 
 const getHighscores = (score: number, amount: number = 5) => {
@@ -35,7 +35,7 @@ const addHighscores = (score: number, name: string) => {
     })
 }
 
-export default { 
+export default {
     getHighscores,
     addHighscores
 }

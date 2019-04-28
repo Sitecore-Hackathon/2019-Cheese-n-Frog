@@ -1,5 +1,6 @@
 import React from 'react';
 import GraphQLApi from '../../api/graphql-api';
+import { isDisconnectedMode } from '../../utils/applicationMode';
 
 const compare = (a,b) =>{
     if (a.score < b.score)
@@ -17,22 +18,37 @@ const LeaderboardHeader = () => {
     )
 }
 
-const ColumnHeader = ({
-    onClick,
-    onClickAll
-}) => (
-        <div className="row colheader">
-            <div className="col-md-2">
-                <h4>#</h4>
+const LeaderBoardDisabledMessage = () => {
+    if (isDisconnectedMode()) {
+        return (
+            <div className="row colheader">
+                <div>
+                    Leaderboard is disabled in disconnected mode.
+                </div>
             </div>
-            <div className="col-md-5">
-                <h4>Name</h4>
+        );
+    }
+    return "";
+}
+
+const ColumnHeader = ({ onClick, onClickAll }) =>  {
+    if (!isDisconnectedMode()) {
+        return (
+            <div className="row colheader">
+                <div className="col-md-2">
+                    <h4>#</h4>
+                </div>
+                <div className="col-md-5">
+                    <h4>Name</h4>
+                </div>
+                <div className="col-md-5 recent">
+                    <h4 onClick={onClick}>Score</h4>
+                </div>
             </div>
-            <div className="col-md-5 recent">
-                <h4 onClick={onClick} >Score</h4>
-            </div>
-        </div>
-    );
+        );
+    }
+    return "";
+}
 
 const User = ({ rank, username, recent, alltime }) => {
     return (
@@ -51,21 +67,20 @@ const User = ({ rank, username, recent, alltime }) => {
 }
 
 class LeaderBoard extends React.Component<any, any> {
-
-    
-
     componentDidMount() {
-        let score = window.localStorage['score'] || 0;
-        setInterval(() => {
-            GraphQLApi.getHighscores(Math.round(score), 10)
-            .then(response => {
-                let list = response.highscoreQuery.items.sort(compare);
-                this.setState({
-                    list: list
-                });
-            })
-            .catch(err => console.log('fetch error : ', err))
-        }, 1000);
+        if (!isDisconnectedMode()) {
+            let score = window.localStorage['score'] || 0;
+            setInterval(() => {
+                GraphQLApi.getHighscores(Math.round(score), 10)
+                .then(response => {
+                    let list = response.highscoreQuery.items.sort(compare);
+                    this.setState({
+                        list: list
+                    });
+                })
+                .catch(err => console.log('fetch error : ', err))
+            }, 1000);
+        }
     }
 
     _clickAllTime(e) {
@@ -86,6 +101,7 @@ class LeaderBoard extends React.Component<any, any> {
         return (
             <div className="container">
                 <LeaderboardHeader />
+                <LeaderBoardDisabledMessage />
                 <ColumnHeader onClickAll={this._clickAllTime} onClick={this._clickRecent} />
                 {userlist}
             </div>

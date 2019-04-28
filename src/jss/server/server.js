@@ -1,9 +1,8 @@
 import serializeJavascript from 'serialize-javascript';
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
-import { renderToStringWithData } from 'react-apollo';
 import Helmet from 'react-helmet';
-import GraphQLClientFactory from '../src/lib/GraphQLClientFactory';
 import config from '../src/temp/config';
 import i18ninit from '../src/i18n';
 import AppRoot, { routePatterns } from '../src/AppRoot';
@@ -49,23 +48,12 @@ export function renderView(callback, path, data, viewBag) {
     setServerSideRenderingState(state);
 
     /*
-      GraphQL Data
-      The Apollo Client needs to be initialized to make GraphQL available to the JSS app.
-      Not using GraphQL? Remove this, and the ApolloContext from `AppRoot`.
-    */
-    const graphQLClient = GraphQLClientFactory(config.graphQLEndpoint, true);
-
-    /*
       App Rendering
     */
     initializei18n(state)
       .then(() =>
-        // renderToStringWithData() allows any GraphQL queries to complete their async call
-        // before the SSR result is returned, so that the resulting HTML from GQL query results
-        // is included in the SSR'ed markup instead of whatever the 'loading' state is.
-        // Not using GraphQL? Use ReactDOMServer.renderToString() instead.
-        renderToStringWithData(
-          <AppRoot path={path} Router={StaticRouter} graphQLClient={graphQLClient} />
+        ReactDOMServer.renderToString(
+          <AppRoot path={path} Router={StaticRouter} />
         )
       )
       .then((renderedAppHtml) => {
@@ -78,10 +66,6 @@ export function renderView(callback, path, data, viewBag) {
         // If you wish to place items in the viewbag that are needed by client-side rendering, this
         // can be removed - but still delete state.viewBag.dictionary, at least.
         delete state.viewBag;
-
-        // We add the GraphQL state to the SSR state so that we can avoid refetching queries after client load
-        // Not using GraphQL? Get rid of this.
-        state.APOLLO_STATE = graphQLClient.cache.extract();
 
         // Inject the rendered app into the index.html template (built from /public/index.html)
         // IMPORTANT: use serialize-javascript or similar instead of JSON.stringify() to emit initial state,

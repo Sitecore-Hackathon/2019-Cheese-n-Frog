@@ -27,22 +27,6 @@ let Navigation = ({ t, i18n }) => (
         <img src={logo} alt="Sitecore" />
       </NavLink>
     </h5>
-    <nav className="my-2 my-md-0 mr-md-3">
-      {/* <a
-        className="p-2 text-light"
-        href="https://jss.sitecore.net"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {t('Documentation')}
-      </a>
-      <NavLink to="/styleguide" className="p-2 text-light">
-        {t('Styleguide')}
-      </NavLink>
-      <NavLink to="/graphql" className="p-2 text-light">
-        {t('GraphQL')}
-      </NavLink> */}
-    </nav>
   </div>
 );
 

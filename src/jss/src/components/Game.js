@@ -3,6 +3,8 @@
 
 import React from 'react';
 import { isServer } from '@sitecore-jss/sitecore-jss';
+import { baseAssetPath } from '../utils/assets';
+import { isDisconnectedMode } from '../utils/applicationMode';
 import GraphQLApi from '../api/graphql-api';
 
 const STATUS = {
@@ -29,9 +31,9 @@ export default class Game extends React.Component {
             };
 
             // Load the assets from a different path when served by Sitecore or disconnected mode.
-            const baseAssetPath = window.location.hostname === 'localhost' ? '' : '/dist/dinocore';
+            const assetPath = baseAssetPath();
 
-            let audio = new Audio(baseAssetPath + '/wav/death.wav');
+            let audio = new Audio(assetPath + '/wav/death.wav');
             let wall = new Image();
             let skyImage = new Image();
             let groundImage = new Image();
@@ -46,14 +48,14 @@ export default class Game extends React.Component {
             groundImage.onload = onImageLoaded;
             playerImage.onload = onImageLoaded;
 
-            wall.src = baseAssetPath + '/img/wall.png';
-            skyImage.src = baseAssetPath + '/img/cloud.png';
-            groundImage.src = baseAssetPath + '/img/ground.png';
-            playerImage.src = baseAssetPath + '/img/dinosaur.png';
-            playerLeftImage.src = baseAssetPath + '/img/dinosaur_left.png';
-            playerRightImage.src = baseAssetPath + '/img/dinosaur_right.png';
-            playerDieImage.src = baseAssetPath + '/img/dinosaur_die.png';
-            obstacleImage.src = baseAssetPath + '/img/obstacle.png';
+            wall.src = assetPath + '/img/wall.png';
+            skyImage.src = assetPath + '/img/cloud.png';
+            groundImage.src = assetPath + '/img/ground.png';
+            playerImage.src = assetPath + '/img/dinosaur.png';
+            playerLeftImage.src = assetPath + '/img/dinosaur_left.png';
+            playerRightImage.src = assetPath + '/img/dinosaur_right.png';
+            playerDieImage.src = assetPath + '/img/dinosaur_die.png';
+            obstacleImage.src = assetPath + '/img/obstacle.png';
 
             this.options = {
                 fps: 60,
@@ -194,7 +196,7 @@ export default class Game extends React.Component {
         if (this.status === STATUS.OVER) {            
             let score = window.localStorage['score'];
             let highScore = window.localStorage['highScore'];
-            if (score >= highScore) {
+            if (score >= highScore && !isDisconnectedMode()) {
                 // add highscore to sitecore
                 GraphQLApi.addHighscores(Math.round(score), 'Player 1')
                     .then(response => {
