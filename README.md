@@ -9,27 +9,34 @@ Category: "Best enhancement to JSS to change a JSS component rendering behavior 
 Youtube video: **[Dinocore highlights](http://youtube.com/watch?v=xxx)**
 
 ## What it solves
-The solution shows a way to personalise JSS client behaviour based on data from/thru the sitecore server. Personalitation by user context showcased using a simple game and using the highscores as data.
+The solution shows a way to personalise JSS client behaviour based on data from the sitecore server. 
 
-This solution could be adapted to fit other needs but the general pattern remains the same and proves very affective.
+Personalisation based the on the user context is showcased using a simple game. While playing the game the running highscore is shown within the overall highscore list.
+
+This solution could be adapted to fit other needs but the general pattern remains the same and proves to be very effective.
 
 ---
 
 ## What it does
 This solution does 2 things: 
-1. Client-side it polls a GraphQL endpoint for all relevant highscores based on the current user's highscore. The highscores become visible client-side in the leaderboard.
-1. Server-side it leverages JSS, GraphQL and the ContentSearch API to produce a list of relevant highscores for the leaderboard. A GraphQL mutation is used for adding a new highscores to the leaderboard.
+1. Client-side it polls a GraphQL end-point for all relevant highscores based on the current user's highscore. The highscores become visible client-side in the leaderboard.
+1. Server-side it leverages JSS, GraphQL and the ContentSearch API to produce a list of relevant highscores for the leaderboard. 
+1. Server-side a GraphQL mutation is used for adding a new highscores to the leaderboard.
+
+> BAD PRACTICE WARNING
+
+The GraphQL mutation classes in [DinocoreSchemaProvider.cs](src/dotnet/Feature/Highscores/website/Providers/DinocoreSchemaProvider.cs) add directly to the sitecore master database. Beware and take appropriate action :)
 
 ---
 
 ## How to install
-Download and install package:
-   [Dowload package](sc.package/SCHackathon 2019 - Cheese n Frog - Dinocore-1.0.zip) from sc.package/SCHackathon 2019 - Cheese n Frog - Dinocore-1.0.zip
+Download and install the sitecore package:
+   [Download package](sc.package/SCHackathon 2019 - Cheese n Frog - Dinocore-1.0.zip) from sc.package/SCHackathon 2019 - Cheese n Frog - Dinocore-1.0.zip
 
 ---
 
 ## How to use
-Follow these setp after installing the module:
+Follow these steps after installing the module:
 * Point you're browser to **[http://dinocore.sc](http://dinocore.sc)**
 ![Dinocore screenshot](documentation/images/screenshot.png?raw=true "Dinocore screenshot")
 * Click in the game window, directly below the Dinocore logo, to start a new game.
