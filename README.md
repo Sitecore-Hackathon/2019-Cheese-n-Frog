@@ -62,3 +62,21 @@ Follow these steps after installing the module:
 * You can avoid obstacles by jumping. Use the **__left mouse__** button or press the **__spacebar__** key to jump.
 
 While you are running, your current highscore will be continuously updated and stacked up against the highscores of other players. Keep your eyes on the leaderboard while you race!
+
+---
+
+## Developer Setup
+
+If you want to play with the code and deploy the solution to your local Sitecore instance.
+
+- Repository path: `D:\_Hackathon\2019-Cheese-n-Frog`
+- Sitecore instance path: `C:\inetpub\wwwroot\dinocore.sc`
+- Sitecore instance hostname: `dinocore.sc`
+
+Deployment order:
+
+1. Build and deploy all 3 projects in the `Hackathon.Dinocore.sln` solution.
+2. Run the Unicorn synchronization.
+3. Build and deploy the JSS application in the `/src/jss` folder using:
+   1. `jss deploy config`
+   2. `jss deploy app -c -d`
