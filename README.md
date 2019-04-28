@@ -100,3 +100,13 @@ Deployment order:
 3. Build and deploy the JSS application in the `/src/jss` folder using:
    1. `jss deploy config`
    2. `jss deploy app -c -d`
+
+---
+
+## Contributors
+
+This Sitecore Hackathon 2019 entry was realized by the hard work of:
+
+- Wessel 't Hoen: [GitHub](https://github.com/wgrthoen)
+- Gary Wenneker: [Twitter](https://twitter.com/GaryWenneker) - [GitHub](https://github.com/GaryWenneker) - [Website](https://gary.wenneker.org/)
+- Jean-François L'Heureux: [Twitter](https://twitter.com/jflh) - [GitHub](https://github.com/jflheureux) - [Website](https://www.jflh.ca)
