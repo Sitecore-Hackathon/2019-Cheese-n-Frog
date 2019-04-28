@@ -31,7 +31,7 @@ The GraphQL mutation classes in [DinocoreSchemaProvider.cs](src/dotnet/Feature/H
 
 ## How to install
 Download and install the sitecore package:
-   [Download package](sc.package/SCHackathon%202019%20-%20Cheese%20n%20Frog%20-%20Dinocore-1.0.zip) from sc.package/SCHackathon 2019 - Cheese n Frog - Dinocore-1.0.zip
+   [SCHackathon 2019 - Cheese n Frog - Dinocore-1.0.zip](sc.package/SCHackathon%202019%20-%20Cheese%20n%20Frog%20-%20Dinocore-1.0.zip)
 
 ---
 
