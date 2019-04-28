@@ -7,7 +7,7 @@ DB: master
 SharedFields:
 - ID: "a39cb1a7-a175-4272-8d6d-0106dae669b1"
   Hint: Score
-  Value: 22
+  Value: 200
 - ID: "f88dbacc-acc0-4b33-bda6-964103c1f956"
   Hint: Name
   Value: Wessel

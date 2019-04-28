@@ -17,8 +17,8 @@
       "defaultRoute": true
     },
     {
-      "name": "ContentBlock",
-      "displayName": "Content Block",
+      "name": "GameComponent",
+      "displayName": "Game Component",
       "icon": "Office/16x16/document_tag.png",
       "fields": []
     }
@@ -32,21 +32,23 @@
       "name": "jss-tabs",
       "displayName": "Tabs",
       "id": "tabs-placeholder"
-    },
-    {}
+    }
   ],
   "appName": "dinocore",
   "language": "en",
   "renderings": [
     {
-      "name": "ContentBlock",
-      "displayName": "Content Block",
+      "name": "GameComponent",
+      "displayName": "Game Component",
       "icon": "Office/16x16/document_tag.png",
       "exposedPlaceholders": [],
-      "dataSourceTemplate": "ContentBlock"
+      "dataSourceTemplate": "GameComponent"
     }
   ],
   "wipeExisting": false,
+  "rootPlaceholders": [
+    "jss-main"
+  ],
   "items": {
     "routes": [
       {
@@ -55,17 +57,17 @@
         "layout": {
           "renderings": [
             {
-              "renderingName": "ContentBlock",
+              "renderingName": "GameComponent",
               "placeholderKey": "/jss-main",
               "placeholderName": "jss-main",
               "dataSource": {
-                "name": "home-jss-main-ContentBlock-1",
-                "displayName": "ContentBlock-1",
-                "template": "ContentBlock",
+                "name": "home-jss-main-GameComponent-1",
+                "displayName": "GameComponent-1",
+                "template": "GameComponent",
                 "fields": []
               },
               "renderingParams": [],
-              "uid": "{2C4A53CC-9DA8-5F51-9D79-6EE2FC671B2D}"
+              "uid": "{0C480F50-71C4-589A-A6AA-BB6123A1CB78}"
             }
           ],
           "placeholders": [

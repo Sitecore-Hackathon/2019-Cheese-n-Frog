@@ -37,6 +37,7 @@ namespace Hackathon.Dinocore.Feature.Highscores.Providers
                 };
                 this.Arguments = new QueryArguments(new [] { scoreArgument, amountArgument });
             }
+
             protected override IEnumerable<Highscore> Resolve(ResolveFieldContext context)
             {
                 var argumentScore = context.GetArgument<int> (Templates.Highscore.Score);
@@ -117,7 +118,6 @@ namespace Hackathon.Dinocore.Feature.Highscores.Providers
                 Name = Templates.Highscore.HighscoresName;
 
                 Field<ListGraphType<HighscoreGraphType>>(Templates.Highscore.Items, resolve: context => context.Source);
-
             }
         }
 
